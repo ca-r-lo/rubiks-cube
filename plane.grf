@@ -1,0 +1,119 @@
+;This file was created by Graph (http://www.padowan.dk)
+;Do not change this file from other programs.
+[Graph]
+Version = 4.4.2.543
+MinVersion = 2.5
+OS = Windows NT 6.2 
+
+[Axes]
+xMin = -0.439422841306475
+xMax = 2.84107715869353
+xTickUnit = 0.2
+xGridUnit = 0.2
+yMin = -0.770788168733405
+yMax = 2.50971183126661
+yTickUnit = 0.5
+yGridUnit = 0.5
+AxesColor = clBlue
+GridColor = 0x00FF9999
+ShowLegend = 1
+Radian = 1
+
+[PointSeries1]
+FillColor = clRed
+LineColor = clBlack
+Size = 5
+Style = 0
+LineSize = 3
+LineStyle = 0
+LabelPosition = 1
+PointCount = 9
+Points = -1,-1;-1,0;-1,1;0,-1;0,0;0,1;1,-1;1,0;1,1;
+Visible = 0
+LegendText = Series 1
+
+[PointSeries2]
+FillColor = clAqua
+LineColor = clMaroon
+Size = 5
+Style = 2
+LineSize = 2
+LineStyle = 2
+LabelPosition = 1
+PointCount = 9
+Points = 1,-1;0,-1;-1,-1;1,0;0,0;-1,0;1,1;0,1;-1,1;
+Visible = 0
+LegendText = Series 2
+
+[PointSeries3]
+FillColor = clTeal
+LineColor = clMaroon
+Size = 5
+Style = 2
+LineSize = 2
+LineStyle = 2
+ShowLabels = 1
+LabelPosition = 1
+PointCount = 9
+Points = 0,0;0,1;0,2;1,0;1,1;1,2;2,0;2,1;2,2;
+LegendText = Series 3
+
+[PointSeries4]
+FillColor = clBlue
+LineColor = clMaroon
+Size = 5
+Style = 2
+LineSize = 2
+LineStyle = 1
+LabelPosition = 1
+PointCount = 9
+Points = 0,0;0,2;0,4;2,3;2,5;2,7;4,6;4,8;4,10;
+LegendText = Series 4
+
+[PointSeries5]
+FillColor = clYellow
+LineColor = clMaroon
+Size = 5
+Style = 2
+LineSize = 2
+LineStyle = 1
+ShowLabels = 1
+LabelPosition = 4
+PointCount = 9
+Points = 0,2;1,2;2,2;0,1;1,1;2,1;0,0;1,0;2,0;
+LegendText = Series 5
+
+[PointSeries6]
+FillColor = clFuchsia
+LineColor = clMaroon
+Size = 5
+Style = 2
+LineSize = 2
+LineStyle = 1
+LabelPosition = 1
+PointCount = 9
+Points = 1,0;0,0;-1,0;1,1;0,1;-1,1;1,2;0,2;-1,2;
+Visible = 0
+LegendText = Series 6
+
+[PointSeries7]
+FillColor = clBlack
+LineColor = clMaroon
+Size = 5
+Style = 2
+LineSize = 2
+LineStyle = 1
+LabelPosition = 1
+PointCount = 9
+Points = 2,0;1,0;0,0;2,1;1,1;0,1;2,2;1,2;0,2;
+Visible = 0
+LegendText = Series 7
+
+[Data]
+TextLabelCount = 0
+FuncCount = 0
+PointSeriesCount = 7
+ShadeCount = 0
+RelationCount = 0
+OleObjectCount = 0
+

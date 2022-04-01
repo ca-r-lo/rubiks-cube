@@ -12,12 +12,11 @@ import sys
 #           rrr
 #           rRr
 #           rrr
-# 
+# TODO: gggyrwwg ggyrwwro boyywoow woybgrgo rbobybyb robwrrby sample 
 
 class Cube:
     def __init__(self, arg):  
         self.arg = arg
-
         # Assign each color to a variable
         self.blue = list(arg[0])
         self.red = list(arg[1])
@@ -25,10 +24,8 @@ class Cube:
         self.white = list(arg[3])
         self.green = list(arg[4])
         self.yellow = list(arg[5])
-
-    def create(self):
-        b,r,o,w,g,y = self.blue,self.red,self.orange,self.white,self.green,self.yellow
-        comp = [b,r,o,w,g,y]
+        
+        comp = [self.blue,self.red,self.orange,self.white,self.green,self.yellow]
         set=list("browgy")
         for i in range(len(comp)):
             comp[i].insert(4,set[i])
@@ -39,22 +36,29 @@ class Cube:
         comp[3]=[w[i:i + 3] for i in range(0, len(w), 3)]
         comp[4]=[g[i:i + 3] for i in range(0, len(g), 3)]
         comp[5]=[y[i:i + 3] for i in range(0, len(y), 3)]
+        self.theList = comp
+
+    def move(self):
+        comp = self.theList
         b,r,o,w,g,y = comp[0],comp[1],comp[2],comp[3],comp[4],comp[5]
-        print(comp)
+        # set the sides: up,down,lef,right
+        # print(y)
+        blue_sides=[o[2],r[0],rotateL(w)[0],rotateR(y)[0]]
+        green_sides= [o[0],r[2],rotateL(rotateL(y))[0],rotateR(rotateR(w))[0]]
+        orange_sides=[rotateR(rotateR(g))[2],b[0],rotateL(w)[0],rotateR(y)[0]]
+        red_sides=[b[2],g[0],w[2],y[2]]
+        yellow_sides=[rotateL(o)[0],rotateL(b)[0],rotateL(r)[0],rotateL(g)[0]]
+        white_sides=[o[2],r[2],g[2],b[2]]
+        print(white_sides)
+        # print(rotateL(g))
+        # print(rotateL(o))
+
+        # rotate(b)
+
+
 
     def show(self):
-        b,r,o,w,g,y = self.blue,self.red,self.orange,self.white,self.green,self.yellow
-        comp = [b,r,o,w,g,y]
-        set=list("browgy")
-        for i in range(len(comp)):
-            comp[i].insert(4,set[i])
-        b,r,o,w,g,y = comp[0],comp[1],comp[2],comp[3],comp[4],comp[5]
-        comp[0]=[b[i:i + 3] for i in range(0, len(b), 3)]
-        comp[1]=[r[i:i + 3] for i in range(0, len(r), 3)]
-        comp[2]=[o[i:i + 3] for i in range(0, len(o), 3)]
-        comp[3]=[w[i:i + 3] for i in range(0, len(w), 3)]
-        comp[4]=[g[i:i + 3] for i in range(0, len(g), 3)]
-        comp[5]=[y[i:i + 3] for i in range(0, len(y), 3)]
+        comp = self.theList
         b,r,o,w,g,y = comp[0],comp[1],comp[2],comp[3],comp[4],comp[5]
 
         for i in o:
@@ -64,10 +68,35 @@ class Cube:
         for i in r:
             print("          ",*i)
 
-def chunks(lst, n):
-    """Yield successive n-sized chunks from lst."""
-    for i in range(0, len(lst), n):
-        yield lst[i:i + n]
+
+def rotateR(lst):
+    a,b=lst,[]
+    # print(a)
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            # b.append(calcRight([i,j]))
+            x=calcRight([i,j])
+            a[i][j],a[x[0]][x[1]+2]=a[x[0]][x[1]+2],a[i][j]
+            a[0][1],a[2][1],a[0][2],a[2][0]=a[2][1],a[0][1],a[2][0],a[0][2]
+    return a
+def rotateL(lst):
+    a,b=lst,[]
+    # print(a)
+    for i in range(len(a)):
+        for j in range(len(a[i])):
+            # b.append(calcRight([i,j]))
+            x=calcLeft([i,j])
+            a[i][j],a[x[0]+2][x[1]]=a[x[0]+2][x[1]],a[i][j]
+            a[0][1],a[2][1],a[0][2],a[2][0]=a[2][1],a[0][1],a[2][0],a[0][2]
+    return a
+
+# turn right
+def calcRight(vect):
+    i_h,j_h,a=[0,-1],[1,0],vect 
+    return i_h[0]*a[0]+j_h[0]*a[1],i_h[1]*a[0]+j_h[1]*a[1]
+def calcLeft(vect):
+    i_h,j_h,a=[0,1],[-1,0],vect 
+    return i_h[0]*a[0]+j_h[0]*a[1],i_h[1]*a[0]+j_h[1]*a[1]
 
 
 # TODO: main func
@@ -77,10 +106,11 @@ def main(arg):
     print(f"Splitting Input:{sides}")
     print("Constructing Cube")
     cube = Cube(sides)
-    cube.create()
-    # cube.show()
+    cube.show()
+    cube.move()
+    # cube.create()
 
-    
+    # ['gggyrwwg', 'ggyrwwro' ,'boyywoow', 'woybgrgo', 'rbobybyb', 'robwrrby']
 def check(arg): 
     # check if argument length is correct
     if len(arg) != 6 : raise SystemExit(f"Usage: {arg[0:]} <input_number_of_sides_by_format> in arg_length: {len(arg)} ")
@@ -91,7 +121,7 @@ def check(arg):
     # letters allowed for inputs
     set=list("browgy")
     numberOfLetters=[0,0,0,0,0,0]
-    # check individual sides if all inputs are correct following Bf Rd Ou Wl Gb Yr format
+    # TODO: check individual sides if all inputs are correct following Bf Rd Ou Wl Gb Yr format
     for i in range(len(arg)):
         for j in range(len(arg[i])):
             # print(arg[i][j])
